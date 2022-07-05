@@ -45,6 +45,11 @@ def category_detail(request, slug):
 
     return render(request, 'product_list.html', context)
 
+def search(request):
+    q=request.GET['q']
+    data=Product.objects.filter(PRDName__icontains=q).order_by('-id')
+    return render(request,'search.html',{'data':data})
+
 
 
 

@@ -66,28 +66,69 @@
 
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
+          <h3 class="my-4 border-bottom pb-1"><span class="text-muted">Search result for</span> {{request.GET.q}}</h3>
+       <div class="row wow fadeIn" id="filteredProducts">
+      {% for product in data %}
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4">
 
-        <!--Grid row-->
-              <h1 class="title">{{ category.CATName }}</h1>
+        <!--Card-->
+        <div class="card">
 
-    {% if category.children.all %}
-        <div class="columns is-multiline">
-            {% for subcategory in category.children.all %}
-                <div class="column is-3">
-                    <h2 class="subtitle">{{ subcategory.CATName }}</h2>
+          <!--Card image-->
+          <div class="view overlay">
+            {% if product.PRDImage %}
+              <img src="{{product.PRDImage.url}}" class="card-img-top"
+              alt="" style="width:100%; height:195px">
+            {% else %}
+              <img src="{% static 'img/default.png' %}" class="card-img-top"
+              alt="" style="width:100%; height:195px">
+            {% endif %}
 
-                    <a href="{% url 'category_detail' subcategory.CATSlug %}">View products</a>
-                </div>
-            {% endfor %}
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!--Card image-->
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <!--Category & Title-->
+            <a href="" class="grey-text">
+              <h5>{{product.PRDCategory}}</h5>
+            </a>
+            <h5>
+              <strong>
+                <!--<a href="{% url 'product_detail' product.PRDSlug %}" class="dark-grey-text">{{product.PRDName}} </a>-->
+                <a href="{{product.get_absolute_url}}" class="dark-grey-text">{{product.PRDName}} </a>
+                </strong>
+            </h5>
+                <p>
+                  {% if product.PRDDiscountPrice > 0 %}
+                      <span class="badge badge-success mr-1">Sale</span>
+                  {% endif %}
+                  {% if product.PRDIsNew > 0 %}
+                      <span class="badge blue mr-1">New</span>
+                  {% endif %}
+                  {% if product.PRDBestSeller %}
+                      <span class="badge red mr-1">Best Seller</span>
+                  {% endif %}
+                </p>
+
+            <h4 class="font-weight-bold blue-text">
+              <strong>{{product.PRDPrice}}$</strong>
+            </h4>
+
+          </div>
+          <!--Card content-->
+
         </div>
-    {% else %}
-        {% with products as list_products %}
-            {% include 'products_category.html' %}
-        {% endwith %}
-    {% endif %}
-        <!--Grid row-->
+        <!--Card-->
 
-
+      </div>
+      <!--Grid column-->
+      {% endfor %}
+    </div>
 
       </section>
       <!--Section: Products v.3-->
