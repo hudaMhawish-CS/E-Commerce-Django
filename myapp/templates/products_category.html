@@ -1,0 +1,105 @@
+{% load static %}
+<div class="row wow fadeIn" id="filteredProducts">
+      {% for product in list_products %}
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4">
+
+        <!--Card-->
+        <div class="card">
+
+          <!--Card image-->
+          <div class="view overlay">
+            {% if product.PRDImage %}
+              <img src="{{product.PRDImage.url}}" class="card-img-top"
+              alt="" style="width:100%; height:195px">
+            {% else %}
+              <img src="{% static 'img/default.png' %}" class="card-img-top"
+              alt="" style="width:100%; height:195px">
+            {% endif %}
+
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!--Card image-->
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <!--Category & Title-->
+            <a href="" class="grey-text">
+              <h5>{{product.PRDCategory}}</h5>
+            </a>
+            <h5>
+              <strong>
+                <!--<a href="{% url 'product_detail' product.PRDSlug %}" class="dark-grey-text">{{product.PRDName}} </a>-->
+                <a href="{{product.get_absolute_url}}" class="dark-grey-text">{{product.PRDName}} </a>
+                </strong>
+            </h5>
+                <p>
+                  {% if product.PRDDiscountPrice > 0 %}
+                      <span class="badge badge-success mr-1">Sale</span>
+                  {% endif %}
+                  {% if product.PRDIsNew > 0 %}
+                      <span class="badge blue mr-1">New</span>
+                  {% endif %}
+                  {% if product.PRDBestSeller %}
+                      <span class="badge red mr-1">Best Seller</span>
+                  {% endif %}
+                </p>
+
+            <h4 class="font-weight-bold blue-text">
+              <strong>{{product.PRDPrice}}$</strong>
+            </h4>
+
+          </div>
+          <!--Card content-->
+
+        </div>
+        <!--Card-->
+
+      </div>
+      <!--Grid column-->
+      {% endfor %}
+    </div>
+{% if list_products.has_other_pages %}
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+          {% if list_products.has_previous %}
+            <!--Arrow left-->
+            <li class="page-item">
+              <a class="page-link" href="?page={{product_list.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+          {% endif %}
+          {% for pages in list_products.paginator.page_range %}
+            {% if list_products.number == pages %}
+                <li class="page-item active">
+                  <a class="page-link" href="#">{{pages}}</a>
+                </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{pages}}">{{pages}}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if list_products.has_next%}
+            <li class="page-item">
+              <a class="page-link" href="?page={{product_list.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <!--Pagination-->
+{% endif%}
+</div>
+

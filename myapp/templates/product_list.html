@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!--Main layout-->
+  <main>
+    <div class="container" style="margin-top: 100px">
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mb-5">
+
+        <!-- Navbar brand -->
+        <span class="navbar-brand">Categories:</span>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'product_list' %}">All
+              </a>
+            </li>
+            {% for category in  menu_categories %}
+              {% if not category.children.all %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'category_detail' category.CATSlug %}">{{category.CATName}}</a>
+                </li>
+              {% else %}
+                 <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'category_detail' category.CATSlug %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{category.CATName}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					{% for subcategory in category.children.all %}
+                        <a class="dropdown-item" href="{% url 'category_detail' subcategory.CATSlug %}">{{subcategory.CATName}}</a>
+                    {% endfor %}
+
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <!-- Links -->
+
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form>
+        </div>
+        <!-- Collapsible content -->
+
+      </nav>
+      <!--/.Navbar-->
+
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+              <h1 class="title">{{ category.CATName }}</h1>
+
+    {% if category.children.all %}
+        <div class="columns is-multiline">
+            {% for subcategory in category.children.all %}
+                <div class="column is-3">
+                    <h2 class="subtitle">{{ subcategory.CATName }}</h2>
+
+                    <a href="{% url 'category_detail' subcategory.CATSlug %}">View products</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% with products as list_products %}
+            {% include 'products_category.html' %}
+        {% endwith %}
+    {% endif %}
+        <!--Grid row-->
+
+
+
+      </section>
+      <!--Section: Products v.3-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+{% endblock content %}
+
+
+
