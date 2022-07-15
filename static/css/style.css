@@ -20,4 +20,63 @@ body,
 
 /* Footer color for sake of consistency with Navbar */
 .page-footer {
-  background-color: #929FBA; }
+  background-color: #15428d; /* #929FBA;*/
+   }
+
+
+/************************ Start login page *************************/
+.container.dark-grey-text.mt-5 {
+    width: 70%;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: inset 6px 6px 6px #cbced1,inset -6px -6px 16px -7px #3f8bf9;
+}
+
+/* .start .login .form-group label */
+.label {
+    text-transform: uppercase;
+    float: left;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+/* .start .login .form-group .form-control */
+.form-group .input{
+    color: #333;
+    background: #ecf0f3;
+    font-size: 15px;
+    height: 50px;
+    padding: 20px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1,inset -6px -6px 6px #fff;
+}
+.form-group .input:focus {
+    box-shadow: inset 6px 6px 6px #cbced1,inset -3px -3px 10px #3f8bf9;
+    outline: none
+}
+.form-group .input::placeholder {
+    color: #808080;
+    font-size: 14px;
+}
+.form-button {
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #3f8bf9;
+    padding: 12px 15px 11px;
+    border-radius: 20px;
+    border: none;
+    box-shadow:   6px 6px 6px #cbced1, -6px -6px 6px white;
+    transition: all 0.5s ease-in-out;
+}
+.form-button:hover,.form-button:focus {
+    color: #fff;
+    letter-spacing: 3px;
+    box-shadow: none;
+    outline: none;
+}
+
+/************************ End login page *************************/

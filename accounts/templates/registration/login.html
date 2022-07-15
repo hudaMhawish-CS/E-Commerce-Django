@@ -2,8 +2,7 @@
 
 {% block content %}
   <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
-
+    <div class="container dark-grey-text mt-5 registration-form">
         {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
         {% endif %}
@@ -19,24 +18,25 @@
 
         <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        </table>
-
-        <input type="submit" value="login">
+        <!--<table>-->
+        <!--<tr>-->
+            <!--<td>{{ form.username.label_tag }}</td>-->
+            <!--<td>{{ form.username }}</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>{{ form.password.label_tag }}</td>-->
+            <!--<td>{{ form.password }}</td>-->
+        <!--</tr>-->
+        <!--</table>-->
+            {% include 'includes/form.html' %}
+        <input type="submit" class="form-button form-control my-4" value="login">
         <input type="hidden" name="next" value="{{ next }}">
         </form>
-
-        {# Assumes you set up the password_reset view in your URLconf #}
-        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+        <div  class="text-center">
+           {# Assumes you set up the password_reset view in your URLconf #}
+            <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        </div>
     </div>
   </main>
+
 {% endblock content %}

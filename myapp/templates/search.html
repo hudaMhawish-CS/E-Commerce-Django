@@ -49,12 +49,10 @@
           </ul>
           <!-- Links -->
 
-            <form class="form-inline my-2 my-lg-0" action="/search">
+            <form action="/search">
 		      <div class="input-group">
-				  <input name="q" type="text" class="form-control" placeholder="search" />
-				  <div class="input-group-append">
-				    <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
-				  </div>
+				  <input name="q" type="text" class="form-control" placeholder="search" style="height:40px"/>
+				  <button class="" type="submit" id="button-addon2" style="height:40px;border:none">Search</button>
 				</div>
 		    </form>
 
@@ -135,6 +133,46 @@
 
     </div>
   </main>
+{% if menu_categories.has_other_pages %}
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+          {% if menu_categories.has_previous %}
+            <!--Arrow left-->
+            <li class="page-item">
+              <a class="page-link" href="?page={{menu_categories.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+          {% endif %}
+          {% for pages in menu_categories.paginator.page_range %}
+            {% if menu_categories.number == pages %}
+                <li class="page-item active">
+                  <a class="page-link" href="#">{{pages}}</a>
+                </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{pages}}">{{pages}}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if menu_categories.has_next%}
+            <li class="page-item">
+              <a class="page-link" href="?page={{menu_categories.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <!--Pagination-->
+{% endif%}
   <!--Main layout-->
 {% endblock content %}
 

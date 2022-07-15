@@ -11,7 +11,7 @@ from cart.form import CartAddProductForm
 def product_list(request):
     product_list = Product.objects.all()
     category = Category.objects.all()
-    paginator = Paginator(product_list, 2)
+    paginator = Paginator(product_list, 4)
     page_number = request.GET.get('page')
     product_list = paginator.get_page(page_number)
     context ={
@@ -37,7 +37,9 @@ def category_detail(request, slug):
     category = get_object_or_404(Category, CATSlug=slug)
     # category = Category.objects.filter(CATSlug=slug)
     products = category.products.filter(PRDparent=None)
-
+    paginator = Paginator(products, 4)
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
     context = {
         'category': category,
         'products': products
@@ -48,6 +50,9 @@ def category_detail(request, slug):
 def search(request):
     q=request.GET['q']
     data=Product.objects.filter(PRDName__icontains=q).order_by('-id')
+    paginator = Paginator(data, 4)
+    page_number = request.GET.get('page')
+    data = paginator.get_page(page_number)
     return render(request,'search.html',{'data':data})
 
 
