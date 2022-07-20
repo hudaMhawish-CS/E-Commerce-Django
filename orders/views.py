@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .form import OrderCreateForm
-from .models import OrderItem
+from .models import OrderItem,Order
 from cart.cart import Cart
+
 
 
 def order_create(request):
@@ -28,3 +29,13 @@ def order_create(request):
         'form':form
     }
     return render(request,'order/create.html',context)
+
+
+def my_order(request):
+    created_by = request.user
+    orders = OrderItem.objects.filter(created_by=created_by)
+
+    context = {
+        'orders': orders,
+    }
+    return render(request,'order/my_order.html',context)

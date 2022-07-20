@@ -3,9 +3,11 @@ from django.views.decorators.http import require_POST
 from myapp.models import Product
 from .cart import Cart
 from .form import CartAddProductForm
+from django.contrib.auth.decorators import login_required
 
 
-@require_POST
+# @require_POST
+@login_required
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product,id=product_id)

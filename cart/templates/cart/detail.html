@@ -5,12 +5,15 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <div class="row">
-         <h3 class="mt-5">Your Cart</h3>
+<div class="container mt-5 mb-5">
+    <div class="row mb-5">
+         <h3 class="mt-5" style="
+                                  font-weight:bold;
+                                  text-shadow: 1px 1px 1px #00F;
+                                    ">Your Cart</h3>
     </div>
     <div class="row">
-        <table class="table">
+        <table class="table mb-5">
               <thead>
                 <tr>
                   <th scope="col">Image</th>
@@ -75,8 +78,8 @@
               </tbody>
         </table>
         <p class="text-align">
-            <a href="{% url 'product_list' %}">Contineu shopping</a>
-            <a href="{% url 'order_create' %}">Checkout</a>
+            <a href="{% url 'product_list' %}" class="btn" style="color:#15428d;font-size:18px;">Contineu shopping</a>
+            <a href="{% url 'order_create' %}" class="btn" style="color:#15428d;font-size:18px;">Checkout</a>
         </p>
     </div>
 </div>

@@ -54,7 +54,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="{% url 'product_list' %}">
-        <strong style="color:#15428d;">SOUQ</strong>
+        <img src="{%static 'img/logo.png' %}" width="40px" height="40px"><strong style="color:#15428d;">Shopping</strong>
       </a>
 
       <!-- Collapse -->
@@ -88,13 +88,16 @@
              {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
                   <a class="nav-link waves-effect" href="{% url 'cart_detail' %}">
-                        <span class="badge red z-depth-1 mr-1 py-2"> {{total_items}} item {{total_items|pluralize}}, $
-                          {{cart.get_total_price}} </span>
+                        <span class="badge red z-depth-1 mr-1 py-2"> {{total_items}}, ${{cart.get_total_price}} </span>
                         <i class="fas fa-shopping-cart"></i>
                         <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                   </a>
                 {% else %}
-                    <p class="mt-1">Your cart is empty</p>
+                    <a class="nav-link waves-effect" href="{% url 'cart_detail' %}">
+                        <span class="badge red z-depth-1 mr-1 py-2">0</span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                  </a>
               {% endif %}
              {% endwith %}
           </li>
@@ -103,13 +106,11 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-circle mr-2"></i>profile
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-content" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'profile' user.username %}">My Profile</a>
-                <a class="dropdown-item" href="#">Edit My Profile</a>
                 <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">My Order</a>
-                <a class="dropdown-item" href="#">Track Order</a>
+                <a class="dropdown-item" href="{% url 'my_order' %}">My Order</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">LogOut</a>
               </div>
             </li>
@@ -143,61 +144,32 @@
   <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
-    <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Download MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>
-    <!--/.Call to action-->
-
-    <hr class="my-4">
-
     <!-- Social icons -->
-    <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
+    <div class="pb-4 pt-4">
+      <a href="https://www.facebook.com/huda.sy.9889" target="_blank">
+        <i class="fab fa-facebook-f mr-3" style="font-size:20px;"></i>
       </a>
 
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
+      <a href="https://www.linkedin.com/in/huda-mhawish" target="_blank">
+        <i class="fab fa-linkedin-in mr-3" style="font-size:20px;"></i>
+      </a>
+      <a href="mailto:huda97mhawish@gmail.com" target="_blank">
+        <i class="fa fa-envelope mr-3" style="font-size:20px;"></i>
       </a>
 
-      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
-      </a>
-
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
-        <i class="fab fa-google-plus-g mr-3"></i>
-      </a>
-
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
-        <i class="fab fa-dribbble mr-3"></i>
-      </a>
-
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
-        <i class="fab fa-pinterest mr-3"></i>
-      </a>
-
-      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
-        <i class="fab fa-github mr-3"></i>
-      </a>
-
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
+      <a href="https://github.com/hudaMhawish-CS" target="_blank">
+        <i class="fab fa-github mr-3" style="font-size:20px;"></i>
       </a>
     </div>
     <!-- Social icons -->
 
     <!--Copyright-->
-    <div class="footer-copyright py-3">
-      © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+    <div class="footer-copyright py-3" style="font-size:17px;">
+      <!--© 2022 Copyright:-->
+      <!--<a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> Huda Mhawish </a>-->
+      Designed with
+     <strong><span class="sr-only">love</span><i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com" target="_blank">Huda Mhawish</a>
+    </strong>
     </div>
     <!--/.Copyright-->
 

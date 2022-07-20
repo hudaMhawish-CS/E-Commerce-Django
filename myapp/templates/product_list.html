@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+
   <!--Main layout-->
   <main>
     <div class="container" style="margin-top: 100px">
@@ -24,7 +25,7 @@
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'product_list' %}">All
+              <a class="nav-link" href="{% url 'product_list' %}">All <span class="sr-only">(current)</span>
               </a>
             </li>
             {% for category in  menu_categories %}
@@ -37,7 +38,7 @@
                   <a class="nav-link dropdown-toggle" href="{% url 'category_detail' category.CATSlug %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{category.CATName}}
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div class="dropdown-content" aria-labelledby="navbarDropdown">
 					{% for subcategory in category.children.all %}
                         <a class="dropdown-item" href="{% url 'category_detail' subcategory.CATSlug %}">{{subcategory.CATName}}</a>
                     {% endfor %}
@@ -52,7 +53,9 @@
             <form action="/search">
 		      <div class="input-group">
 				  <input name="q" type="text" class="form-control" placeholder="search" style="height:40px"/>
-				  <button class="" type="submit" id="button-addon2" style="height:40px;border:none">Search</button>
+				  <button class="text-center" type="submit" id="button-addon2" style="height:40px;border:#15428d;color:#15428d;">
+                      <i class="fa fa-search mx-2"></i>
+                  </button>
 				</div>
 		    </form>
         </div>
@@ -84,15 +87,11 @@
     {% endif %}
         <!--Grid row-->
 
-
-
       </section>
       <!--Section: Products v.3-->
-
     </div>
   </main>
   <!--Main layout-->
-
 {% endblock content %}
 
 

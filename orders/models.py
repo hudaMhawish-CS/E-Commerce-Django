@@ -1,5 +1,7 @@
 from django.db import models
 from myapp.models import Product
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -13,6 +15,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ('-created',)
@@ -31,6 +34,8 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product,related_name='order_items',on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10,decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
+    created_by = models.ForeignKey(User, related_name='order', on_delete=models.CASCADE)
+
 
     class Meta:
         verbose_name = "OrderItem"

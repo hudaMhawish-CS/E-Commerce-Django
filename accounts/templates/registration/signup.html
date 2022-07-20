@@ -3,12 +3,12 @@
 
 {% block content %}
   <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+    <div class="container dark-grey-text mt-5 form">
 
         <form method="post">
             {% csrf_token%}
-            <!--{{form}}-->
-            {% include 'includes/form.html' %}
+            {{form}}
+            <!--{% include 'includes/form.html' %}-->
             <button type="submit" class="btn form-button form-control my-4">Sign Up</button>
         </form>
 
@@ -16,27 +16,4 @@
   </main>
 {% endblock content %}
 
-<!--         AJAX                 -->
-{% block javascript %}
-<script type="text/javascript">
-    $("#id_username").change(function(){
-        var username = $(this).val();
-        var form = $(this).closest("form");
-        $.ajax({
-            url:form.attr("data-validate-username-url"),
-            data:form.serialize(),
-            dataType: 'json',
-            success: function(data){
-                if (data.is_taken){
-                    $("#user_error").text(data.error_message);
-                    $("#user_error").css("display","block");
-                    $("#user_error").css("color","red");
-                }
-                else{
-                    $("#user_error").css("display","none");
-                }
-            }
-        });
-    });
-</script>
-{% endblock javascript%}
+

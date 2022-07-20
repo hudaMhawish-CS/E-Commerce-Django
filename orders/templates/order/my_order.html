@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+	CheckOut
+{% endblock title %}
+
+{% block content %}
+    <div class="container" style="margin-top:90px;">
+       <h1 class="mt-5 mb-4" style="
+                                  font-weight:bold;
+                                  text-shadow: 1px 1px 1px #00F;">My Orders</h1>
+            <div class="row order">
+                <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="color:#08419f;font-size:20px;">order</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">QUANTITY</th>
+                    <th scope="col">PRICE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                  <tr>
+                    <th scope="row">{{order.id}}</th>
+                    <td>{{order.order.first_name}} {{order.order.last_name}}</td>
+                    <td>{{order.order.address}}</td>
+                    <td>{{order.order.email}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.price}} $</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+		</div>
+{% endblock content %}

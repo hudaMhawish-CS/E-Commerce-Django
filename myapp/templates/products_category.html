@@ -1,8 +1,8 @@
 {% load static %}
-<div class="row wow fadeIn" id="filteredProducts">
+<div class="row" id="filteredProducts">
       {% for product in list_products %}
       <!--Grid column-->
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 wow fadeIn">
 
         <!--Card-->
         <div class="card">
@@ -62,45 +62,46 @@
       {% endfor %}
     </div>
 
-{% if list_products.has_other_pages %}
-      <!--Pagination-->
-      <nav class="d-flex justify-content-center wow fadeIn">
-        <ul class="pagination pg-blue">
-          {% if list_products.has_previous %}
-            <!--Arrow left-->
-            <li class="page-item">
-              <a class="page-link" href="?page={{product_list.previous_page_number}}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-          {% else %}
-            <li class="page-item disabled"></li>
-          {% endif %}
-          {% for pages in list_products.paginator.page_range %}
-            {% if list_products.number == pages %}
-                <li class="page-item active">
-                  <a class="page-link" href="#">{{pages}}</a>
-                </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{pages}}">{{pages}}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-          {% if list_products.has_next%}
-            <li class="page-item">
-              <a class="page-link" href="?page={{product_list.next_page_number}}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          {% else %}
-            <li class="page-item disabled"></li>
-          {% endif %}
-        </ul>
-      </nav>
-      <!--Pagination-->
-{% endif%}
+<!--{% if list_products.has_other_pages %}-->
+      <!--&lt;!&ndash;Pagination&ndash;&gt;-->
+      <!--<nav class="d-flex justify-content-center wow fadeIn">-->
+        <!--<ul class="pagination pg-blue">-->
+          <!--{% if list_products.has_previous %}-->
+            <!--&lt;!&ndash;Arrow left&ndash;&gt;-->
+            <!--<li class="page-item">-->
+              <!--<a class="page-link" href="?page={{product_list.previous_page_number}}" aria-label="Previous">-->
+                <!--<span aria-hidden="true">&laquo;</span>-->
+                <!--<span class="sr-only">Previous</span>-->
+              <!--</a>-->
+            <!--</li>-->
+          <!--{% else %}-->
+            <!--<li class="page-item disabled"></li>-->
+          <!--{% endif %}-->
+          <!--{% for pages in list_products.paginator.page_range %}-->
+            <!--{% if list_products.number == pages %}-->
+                <!--<li class="page-item active">-->
+                  <!--<a class="page-link" href="#">{{pages}}</a>-->
+                <!--</li>-->
+            <!--{% else %}-->
+              <!--<li class="page-item">-->
+                <!--<a class="page-link" href="?page={{pages}}">{{pages}}</a>-->
+              <!--</li>-->
+            <!--{% endif %}-->
+          <!--{% endfor %}-->
+          <!--{% if list_products.has_next%}-->
+            <!--<li class="page-item">-->
+              <!--<a class="page-link" href="?page={{product_list.next_page_number}}" aria-label="Next">-->
+                <!--<span aria-hidden="true">&raquo;</span>-->
+                <!--<span class="sr-only">Next</span>-->
+              <!--</a>-->
+            <!--</li>-->
+          <!--{% else %}-->
+            <!--<li class="page-item disabled"></li>-->
+          <!--{% endif %}-->
+        <!--</ul>-->
+      <!--</nav>-->
+      <!--&lt;!&ndash;Pagination&ndash;&gt;-->
+<!--{% endif%}-->
+
 </div>
 
