@@ -1,33 +1,66 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block title %}
 	CheckOut
 {% endblock title %}
 
 {% block content %}
-		<h1 class="mt-5">CheckOut</h1>
+		<div class="mt-5" style="visibility:hidden;">
+			<p>    shopping</p>
+		</div>
+		<h1 class="mt-5" style="
+                                  font-weight:bold;
+                                  text-shadow: 1px 1px 1px #00F;">CheckOut</h1>
 		<div class="row">
-			<div class="col-md-9">
-				<form method="post" action="." class="order_form">
+			<div class="col-md-6">
+				<div class="checkout-form">
+				<form method="post" action=".">
 					{% csrf_token %}
-					{{form.as_p}}
-					<button type="submit">Place order</button>
+					{% for field in form %}
+						<div class="form-group">
+							{{field.label_tag}}
+
+							{% if form.is_bound %}
+								{% if field.errors %}
+									{% render_field field class="form-control is-invalid" %}
+									{% for error in field.errors %}
+										<div class="invalid-feedback">{{error}}</div>
+									{% endfor %}
+								{% else %}
+									{% render_field field class="form-control is-valid" %}
+								{% endif %}
+							{% else %}
+								{% render_field field class="form-control" %}
+							{% endif %}
+
+						</div>
+
+						{% if field.help_text %}
+						<small class="form-text text-muted">
+							{{field.help_text}}
+						</small>
+						{% endif %}
+
+                 {% endfor %}
+					<button type="submit" class="btn-primary form-control">Place order</button>
 				</form>
 			</div>
-			<div class="col-md-3">
+				</div>
+			<div class="col-md-6">
 				<div class="order-info">
-					<h3>Your order</h3>
+					<h3 style="font-weight:bold; text-shadow: 1px 1px 1px #00F;">Your order</h3>
 					<ul>
 						{% for item in cart %}
-							<li>{{item.quantity}} x {{item.product.name}} <span>${{item.total_price}}</span></li>
+							<li style="font-weight:bold;">{{item.quantity}} x {{item.product.name}} <span>${{item.total_price}}</span></li>
 						{% endfor %}
 						{% if cart.coupon %}
-							<li>
+							<li style="font-weight:bold;">
 								"{{cart.coupon.code}}" ({{cart.coupon.discount}}% off)
 								<span> - ${{cart.get_discount|floatformat:"2"}}</span>
 							</li>
 						{% endif %}
 					</ul><br>
-					<p>Total: ${{cart.get_total_price}}</p>
+					<p style="font-weight:bold; text-shadow: 1px 1px 1px #00F;">Total: ${{cart.get_total_price}}</p>
 				</div>
 			</div>
 		</div>

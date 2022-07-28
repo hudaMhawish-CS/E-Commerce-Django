@@ -173,4 +173,20 @@ body,
 }
 /************************ End profile page *************************/
 
+/************************ Start checkout create page *************************/
+.checkout-form,.order-info {
+    padding: 20px;
+    border: 1px solid #ceedf9;
+    box-shadow: 1px 1px 30px -8px #CCC;
+    transition: all 1.4s ease-in-out;
+    transform: scale(0.9);
+    border-radius: 15px;
+    margin: 20px;
+}
+.checkout-form:hover,.order-info:hover {
+    box-shadow: 1px 1px 25px -8px #3f8bf9;
+    transform: scale(1);
+}
+
+/************************ End checkout create page *************************/
 
