@@ -1,5 +1,6 @@
 # E-Commerce-Django
 E-Commerce web application using Python, Django, Bootstrap, JavaScript, and more.
+* Demo : https://youtu.be/B0swqluze5U
 ## Built with
 1.	Django
 2.	Python
